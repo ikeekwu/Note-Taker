@@ -10,7 +10,7 @@ module.exports = function(app) {
             let notes = JSON.parse(data)
             res.json(notes)
         });
-        console.log("here")
+
     });
 
     app.post("/api/notes", function(req, res) {
@@ -29,14 +29,17 @@ module.exports = function(app) {
     });
 
     app.delete("/api/notes/:id", function (req, res) {
-        var deletes = req.params.id;
+        var deletes = req.params.id - 1;
 
         fs.readFile("/Users/ikechiekwueme/Desktop/Projects/Note-Taker/db/db.json", function(err, data) {
             if (err) throw err;
 
             var notes = JSON.parse(data);
-
-            delete deletes
+            notes.splice(deletes, 1);
+            for (let i = 0; i < notes.length; i++) {
+                notes[i].id = i + 1;
+            }
+            
 
             fs.writeFile("/Users/ikechiekwueme/Desktop/Projects/Note-Taker/db/db.json", JSON.stringify(notes), function(err){
                 if (err) throw err;
