@@ -8,7 +8,7 @@ module.exports = function(app) {
         fs.readFile("/Users/ikechiekwueme/Desktop/Projects/Note-Taker/db/db.json", function (err, data) {
             if (err) throw err;
             let notes = JSON.parse(data)
-            res.json(data)
+            res.json(notes)
         });
         console.log("here")
     });
@@ -35,10 +35,12 @@ module.exports = function(app) {
             if (err) throw err;
 
             var notes = JSON.parse(data);
-            notes.splice(deletes, 1);
+
+            delete deletes
 
             fs.writeFile("/Users/ikechiekwueme/Desktop/Projects/Note-Taker/db/db.json", JSON.stringify(notes), function(err){
                 if (err) throw err;
+                res.sendStatus(200);
             })
         })
 
