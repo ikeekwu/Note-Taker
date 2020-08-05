@@ -24,7 +24,7 @@ var saveNote = function (note) {
   });
 };
 
-// A function for deleting a note from the db
+// A function for deleting a note from the db!
 var deleteNote = function (id) {
   console.log(id)
   return $.ajax({
