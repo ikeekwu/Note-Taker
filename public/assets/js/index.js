@@ -94,7 +94,7 @@ var handleNewNoteView = function () {
   renderActiveNote();
 };
 
-// If a note's title or text are empty, hide the save button
+// If a note's title or text are empty, hide the save button.
 // Or else show it
 var handleRenderSaveBtn = function () {
   if (!$noteTitle.val().trim() || !$noteText.val().trim()) {
